@@ -163,6 +163,6 @@ import { isDemoMode } from '@/demo';
 const useLocalApi = isDemoMode() || process.env.NODE_ENV === 'development';
 
 export const request: RequestConfig = {
-  baseURL: useLocalApi ? '' : 'https://proapi.azurewebsites.net',
+  baseURL: useLocalApi ? '' : 'http://127.0.0.1:6066',
   ...errorConfig,
 };
