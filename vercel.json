@@ -1,0 +1,14 @@
+{
+  "buildCommand": "npm run build:demo",
+  "outputDirectory": "dist",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "env": {
+    "UMI_APP_DEMO": "1"
+  }
+}

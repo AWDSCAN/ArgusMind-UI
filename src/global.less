@@ -1,0 +1,180 @@
+@font-face {
+  font-family: "AlibabaSans";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("//mdn.alipayobjects.com/huamei_iwk9zp/afts/file/A*1GSgSYDD_aIAAAAAQsAAAAgAegCCAQ/AlibabaSans-Light.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "AlibabaSans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("//mdn.alipayobjects.com/huamei_iwk9zp/afts/file/A*2zEUQqnPNesAAAAAQtAAAAgAegCCAQ/AlibabaSans-Regular.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "AlibabaSans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("//mdn.alipayobjects.com/huamei_iwk9zp/afts/file/A*E_cxRbMlZqUAAAAAQuAAAAgAegCCAQ/AlibabaSans-Medium.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "AlibabaSans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("//mdn.alipayobjects.com/huamei_iwk9zp/afts/file/A*E_cxRbMlZqUAAAAAQuAAAAgAegCCAQ/AlibabaSans-Bold.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "AlibabaSans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("//mdn.alipayobjects.com/huamei_iwk9zp/afts/file/A*E_cxRbMlZqUAAAAAQuAAAAgAegCCAQ/AlibabaSans-Heavy.woff2")
+    format("woff2");
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans SC", system-ui, sans-serif;
+}
+
+.colorWeak {
+  filter: invert(80%);
+}
+
+.ant-layout {
+  min-height: 100vh;
+}
+.ant-pro-sider.ant-layout-sider.ant-pro-sider-fixed {
+  left: unset;
+}
+
+canvas {
+  display: block;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+@media (max-width: 768px) {
+  .ant-table {
+    width: 100%;
+    overflow-x: auto;
+    &-thead > tr,
+    &-tbody > tr {
+      > th,
+      > td {
+        white-space: pre;
+        > span {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+/* 表格：外框 + 列分割线（不用 overflow:hidden，避免影响 sticky 表头） */
+.ant-table-wrapper {
+  border-radius: var(--ant-border-radius-lg, 8px);
+  border: 1px solid var(--ant-color-border-secondary);
+
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td,
+  .ant-table-tfoot > tr > th,
+  .ant-table-tfoot > tr > td {
+    border-inline-end: 1px solid var(--ant-color-border-secondary);
+  }
+
+  .ant-table-thead > tr > th:last-child,
+  .ant-table-tbody > tr > td:last-child,
+  .ant-table-tfoot > tr > th:last-child,
+  .ant-table-tfoot > tr > td:last-child {
+    border-inline-end: none;
+  }
+}
+
+/* 暗色下表格与 antd token 对齐（依赖 AntdThemeSync 切换 CSS 变量） */
+html[data-theme='dark'] .ant-table-wrapper {
+  .ant-table,
+  .ant-table-container {
+    background: var(--ant-color-bg-container);
+  }
+
+  .ant-table-thead > tr > th {
+    background: var(--ant-color-fill-tertiary);
+    color: var(--ant-color-text);
+    border-bottom-color: var(--ant-color-border-secondary);
+  }
+
+  .ant-table-tbody > tr > td {
+    background: var(--ant-color-bg-container);
+    color: var(--ant-color-text);
+    border-bottom-color: var(--ant-color-border-secondary);
+  }
+
+  .ant-table-tbody > tr.ant-table-row:hover > td {
+    background: var(--ant-color-fill-secondary);
+  }
+
+  .ant-table-cell-fix-left,
+  .ant-table-cell-fix-right {
+    background: var(--ant-color-bg-container);
+  }
+
+  .ant-table-thead > tr > th.ant-table-cell-fix-left,
+  .ant-table-thead > tr > th.ant-table-cell-fix-right {
+    background: var(--ant-color-fill-tertiary);
+  }
+}
+
+/* 卡片 / Pro 卡片：圆角 + 极轻毛玻璃 */
+#root .ant-card,
+#root .ant-pro-card {
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+}
+
+html[data-theme='dark'] #root .ant-card,
+html[data-theme='dark'] #root .ant-pro-card {
+  background-color: color-mix(in srgb, var(--ant-color-bg-container) 88%, transparent) !important;
+  border-color: var(--ant-color-border-secondary) !important;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+}
+
+/* 不支持 color-mix 时的回退 */
+@supports not (background: color-mix(in srgb, black 50%, white)) {
+  html[data-theme='dark'] #root .ant-card,
+  html[data-theme='dark'] #root .ant-pro-card {
+    background-color: rgba(20, 20, 20, 0.92) !important;
+  }
+}
+
+/* SettingDrawer 右侧齿轮：提高层级；固定到右下角（pro-layout 默认在上侧 inset-block-start:240px） */
+.ant-pro-setting-drawer-handle {
+  z-index: 1001 !important;
+  inset-block-start: auto !important;
+  inset-block-end: 80px !important;
+  inset-inline-end: 0 !important;
+}

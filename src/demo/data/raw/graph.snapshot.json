@@ -1,0 +1,1142 @@
+{
+  "success": true,
+  "data": {
+    "nodes": [
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1454",
+        "labels": ["Task"],
+        "props": {
+          "path": "C:\\Users\\ArgusMind\\AppData\\Local\\Temp\\ArgusMind\\project\\110ee6ad-ec3a-41f8-81fb-d6cd56d6cf6b",
+          "project_id": "756673a8-ad64-475e-84d1-8ffef7421931",
+          "name": "claimflow-demo",
+          "created_at": "2026-05-21T23:29:11.947803",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "a4b01b0c47644e7cbe7546870aecd942"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1455",
+        "labels": ["AuditStage"],
+        "props": {
+          "end_time": "2026-05-21T23:29:12.071014",
+          "name": "Information Collection",
+          "created_at": "2026-05-21T23:29:11.981546",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "67de1611e45c46118b853336d94b5111",
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1456",
+        "labels": ["AuditStage"],
+        "props": {
+          "end_time": "2026-05-21T23:30:49.944299",
+          "name": "make a plan",
+          "created_at": "2026-05-21T23:29:12.097763",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "4ce891f07f6b4870b221308f8d8885fe",
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "labels": ["Language"],
+        "props": {
+          "level": 1,
+          "name": "TypeScript",
+          "created_at": "2026-05-21T23:30:49.723957",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "cn_72fe311274db46bf",
+          "status": "running"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1471",
+        "labels": ["RiskCategory"],
+        "props": {
+          "category_name": "information_disclosure",
+          "level": 6,
+          "risk_description": "错误处理、API 响应或日志中可能泄露敏感信息（如数据库结构、用户数据、系统路径）。",
+          "created_at": "2026-05-21T23:30:49.936149",
+          "reasoning_basis": "SvelteKit 默认错误处理可能返回堆栈信息，API 路由的错误响应也可能包含过多细节。",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "79819188292246f4a75be0bf57d51ba1",
+          "status": "pending"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1470",
+        "labels": ["RiskCategory"],
+        "props": {
+          "category_name": "unvalidated_redirect",
+          "level": 6,
+          "risk_description": "登录/登出等跳转逻辑中，若 `redirect` 参数来自用户输入且未校验，攻击者可构造钓鱼链接。",
+          "created_at": "2026-05-21T23:30:49.926571",
+          "reasoning_basis": "认证流程涉及页面跳转，可能存在未经验证的 URL 重定向参数。",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "91c50889c66f4ad8b22970325ade0212",
+          "status": "pending"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1469",
+        "labels": ["RiskCategory"],
+        "props": {
+          "category_name": "mass_assignment",
+          "level": 5,
+          "risk_description": "Drizzle ORM 的 insert/update 操作若直接使用用户提交的完整对象，可能允许用户修改不应由前端控制的字段（如 role、status、amount）。",
+          "created_at": "2026-05-21T23:30:49.913459",
+          "reasoning_basis": "API 路由接收用户输入后直接传递给 ORM 操作，可能未对字段进行白名单过滤。",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "9deb125b41954e75ada236bb55137603",
+          "status": "pending"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1468",
+        "labels": ["RiskCategory"],
+        "props": {
+          "category_name": "business_logic_vulnerability",
+          "level": 5,
+          "risk_description": "理赔工作流状态转换、赔付计算、续保管理等业务逻辑中，若状态校验不严格或计算逻辑存在缺陷，可能导致利益损失或业务绕过。",
+          "created_at": "2026-05-21T23:30:49.900878",
+          "reasoning_basis": "项目包含复杂的业务规则（12 种理赔状态转换、6 种欺诈规则、折旧率计算等），业务逻辑漏洞是核心风险。",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "4c0fae82ebb44303b3df90c2a6b2e56c",
+          "status": "pending"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1467",
+        "labels": ["RiskCategory"],
+        "props": {
+          "category_name": "csv_injection",
+          "level": 4,
+          "risk_description": "CSV 导出功能 `batch.ts` 中，若理赔数据包含恶意公式（如 `=CMD`），导入到 Excel 等工具时可能执行任意命令。",
+          "created_at": "2026-05-21T23:30:49.888432",
+          "reasoning_basis": "项目通过 `api/claims/export/` 提供 CSV 导出功能，导出数据来源于数据库，可能包含用户可控的字段。",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "a4ae2f86fb03401f9e7b1c2d2bd46d52",
+          "status": "pending"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1466",
+        "labels": ["RiskCategory"],
+        "props": {
+          "category_name": "weak_password_hashing",
+          "level": 4,
+          "risk_description": "使用 SHA-256 进行密码哈希，缺乏盐值和慢哈希（如 bcrypt/argon2），若数据库泄露，密码容易被彩虹表破解。",
+          "created_at": "2026-05-21T23:30:49.874395",
+          "reasoning_basis": "`auth.ts` 中密码哈希使用 SHA-256，未使用现代的密码哈希算法。",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "bdc68602d05b45dd85814db851d069bf",
+          "status": "pending"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1465",
+        "labels": ["RiskCategory"],
+        "props": {
+          "category_name": "session_fixation",
+          "level": 4,
+          "risk_description": "若登录成功后未重新生成 Session ID，攻击者可能通过固定 Session 的方式劫持用户会话。",
+          "created_at": "2026-05-21T23:30:49.863356",
+          "reasoning_basis": "`auth.ts` 实现登录逻辑，Session 的生成和更新机制需要审计是否存在 Session 固定漏洞。",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "b97a14a3c38b457fbcbeeb5a9e5762a6",
+          "status": "pending"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1464",
+        "labels": ["RiskCategory"],
+        "props": {
+          "category_name": "insecure_deserialization",
+          "level": 3,
+          "risk_description": "多处使用 `JSON.parse()` 处理从数据库读取的 JSON 字段（如 coverageDetails、fraudFlags、metadata、damageItems），若这些数据来自不可信源或未经验证，可能触发反序列化安全问题。",
+          "created_at": "2026-05-21T23:30:49.850208",
+          "reasoning_basis": "项目在多个业务模块（理赔、保单、欺诈检测）中存储和读取 JSON 结构化数据，`JSON.parse()` 的输入来源需要审计。",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "22faf353ef1e486a9c6d97fbfdeb8b29",
+          "status": "pending"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1463",
+        "labels": ["RiskCategory"],
+        "props": {
+          "category_name": "xss",
+          "level": 3,
+          "risk_description": "Svelte 模板默认对输出进行转义，但在动态 HTML 渲染（如 `{@html}`）或用户输入直接嵌入到 HTML 属性、URL 中时，仍可能产生 XSS 漏洞。",
+          "created_at": "2026-05-21T23:30:49.835859",
+          "reasoning_basis": "项目包含 Svelte 前端组件，用户输入（如消息内容、理赔备注）可能通过模板渲染到页面中，若使用 `@html` 则风险更高。",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "0ee0743325d34e8c902dc3cf7a1d65fb",
+          "status": "pending"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1462",
+        "labels": ["RiskCategory"],
+        "props": {
+          "category_name": "broken_access_control",
+          "level": 2,
+          "risk_description": "基于 RBAC 的权限系统若在路由层或 API 端点缺少权限校验，低权限用户可能访问高权限功能（如管理后台、批量操作）。",
+          "created_at": "2026-05-21T23:30:49.825326",
+          "reasoning_basis": "`rbac.ts` 定义了角色权限，但权限校验可能仅在服务端逻辑层实现，路由层（尤其是 API 路由）可能遗漏校验。",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "81129cfc3d62475091a421703748d494",
+          "status": "pending"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1461",
+        "labels": ["RiskCategory"],
+        "props": {
+          "category_name": "idor",
+          "level": 1,
+          "sink_finder_completed": true,
+          "risk_description": "API 路由和页面路由中，若未对用户可访问的资源（如理赔、保单、消息）进行所有权校验，攻击者可遍历 ID 访问其他用户的数据。",
+          "created_at": "2026-05-21T23:30:49.774329",
+          "reasoning_basis": "项目存在多个角色（policyholder/adjuster/agent/underwriter/admin）和大量资源 ID 路由（如 claims/[id]、policies/[id]），越权访问是常见风险。",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "46544491393d48dfb35f12bc2b7c7271",
+          "status": "running"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1460",
+        "labels": ["RiskCategory"],
+        "props": {
+          "category_name": "authentication_bypass",
+          "level": 2,
+          "risk_description": "基于 Cookie + Session 的密码认证（SHA-256 哈希），若 Session 管理机制（如生成、存储、过期、验证）存在缺陷，可能导致认证绕过。",
+          "created_at": "2026-05-21T23:30:49.760792",
+          "reasoning_basis": "`hooks.server.ts` 在每个请求中解析 Cookie 获取 Session，`auth.ts` 实现密码认证逻辑，Session 的生成和验证是认证安全的核心。",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "9d5847616d004f0ca4a14dd353b1efc9",
+          "status": "pending"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1459",
+        "labels": ["RiskCategory"],
+        "props": {
+          "category_name": "path_traversal",
+          "level": 3,
+          "risk_description": "文件上传模块 `uploads.ts` 中，若用户提供的文件名或路径未充分校验，攻击者可通过 `../` 等路径穿越手段写入或读取任意目录文件。",
+          "created_at": "2026-05-21T23:30:49.747902",
+          "reasoning_basis": "项目明确存在文件上传功能，上传目录硬编码为 `./uploads/`，且按 claims/policies/general 子目录组织，文件名可能来源于用户输入。",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "ebca732762284701964e5cc99f16e0b1",
+          "status": "pending"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1458",
+        "labels": ["RiskCategory"],
+        "props": {
+          "category_name": "sql_injection",
+          "level": 3,
+          "risk_description": "通过 Drizzle ORM 操作 SQLite/PostgreSQL，若使用 raw SQL、动态拼接查询条件或误用 ORM 方法，可能导致 SQL 注入漏洞。",
+          "created_at": "2026-05-21T23:30:49.737377",
+          "reasoning_basis": "项目通过 Drizzle ORM 访问数据库，且 .env.example 中同时支持 SQLite 和 PostgreSQL，ORM 的复杂查询或原生 SQL 调用可能引入注入风险。",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "d8fe3b52b619407580630d7f3b7e7727",
+          "status": "pending"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1480",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "直接使用传入的claimId查询settlementCalculations表返回所有赔付记录，未校验调用者权限，任意知道claimId的用户可获取该理赔的全部赔付计算结果",
+          "file": "src/lib/server/settlement.ts",
+          "line": 179,
+          "function": "getClaimSettlements",
+          "sink_node_id": "src/lib/server/settlement.ts:179:getClaimSettlements",
+          "related_exec": "",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "",
+          "end_line": 183,
+          "status": "running"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1485",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "从formData获取claimId/policyId后直接上传文件到对应目录并建立关联，未校验当前用户对该claim或policy的归属权，攻击者可向任意claim上传文件",
+          "file": "src/routes/api/documents/+server.ts",
+          "line": 22,
+          "function": "POST",
+          "sink_node_id": "src/routes/api/documents/+server.ts:22:POST",
+          "related_exec": "",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "",
+          "end_line": 27,
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1473",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "通过URL参数claimId直接查询claims表，仅校验角色未校验当前用户对该claim的归属权，其他用户可通过遍历claimId访问任意理赔的详细信息和工作流状态",
+          "file": "src/routes/api/claims/workflow/+server.ts",
+          "line": 21,
+          "function": "GET",
+          "sink_node_id": "src/routes/api/claims/workflow/+server.ts:21:GET",
+          "related_exec": "",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "",
+          "end_line": 23,
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1475",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "直接使用传入的claimId更新claims表状态和插入工作流历史记录，未校验请求者与claim的归属关系，是executeTransition函数中最终执行数据库写入的IDOR sink点",
+          "file": "src/lib/server/workflow.ts",
+          "line": 200,
+          "function": "executeTransition",
+          "sink_node_id": "src/lib/server/workflow.ts:200:executeTransition",
+          "related_exec": "",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "",
+          "end_line": 202,
+          "status": "running"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1482",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "直接使用传入的claimId更新claims.amountRecommended，未校验调用者与claim的归属关系，任何持有claimId的调用者均可修改任意理赔的推荐赔付金额",
+          "file": "src/lib/server/settlement.ts",
+          "line": 155,
+          "function": "saveSettlementCalculation",
+          "sink_node_id": "src/lib/server/settlement.ts:155:saveSettlementCalculation",
+          "related_exec": "",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "",
+          "end_line": 160,
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1484",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "exportClaimsToCSV导出所有claim数据，可指定status/type/dateFrom/dateTo/adjusterId等筛选参数，adjuster角色可导出系统中任意理赔的全部明细数据（含用户个人信息）",
+          "file": "src/routes/api/claims/export/+server.ts",
+          "line": 51,
+          "function": "GET",
+          "sink_node_id": "src/routes/api/claims/export/+server.ts:51:GET",
+          "related_exec": "",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "",
+          "end_line": 51,
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1487",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "通过params.id直接更新claims表（设置underwriterDecision、amountApproved、status等字段），未校验该claim是否实际需要核保审查，underwriter可越权操作任意理赔",
+          "file": "src/routes/underwriter/claims/[id]/+page.server.ts",
+          "line": 85,
+          "function": "makeDecision",
+          "sink_node_id": "src/routes/underwriter/claims/[id]/+page.server.ts:85:makeDecision",
+          "related_exec": "",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "",
+          "end_line": 87,
+          "status": "running"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1477",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "直接使用传入的claimId查询并更新claims表，未校验调用者与claim的归属关系，攻击者传入任意claimId即可篡改分派结果",
+          "file": "src/lib/server/triage.ts",
+          "line": 32,
+          "function": "autoAssignClaim",
+          "sink_node_id": "src/lib/server/triage.ts:32:autoAssignClaim",
+          "related_exec": "",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "",
+          "end_line": 34,
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1486",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "通过params.id直接查询claims表，未校验当前用户（underwriter）是否应有权访问该理赔，任何underwriter角色可查看任意理赔详情",
+          "file": "src/routes/underwriter/claims/[id]/+page.server.ts",
+          "line": 10,
+          "function": "load",
+          "sink_node_id": "src/routes/underwriter/claims/[id]/+page.server.ts:10:load",
+          "related_exec": "",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "",
+          "end_line": 17,
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1472",
+        "labels": ["Knowledge"],
+        "props": {
+          "risk_category_node_id": "46544491393d48dfb35f12bc2b7c7271",
+          "created_at": "2026-05-21T23:30:50.109654",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "node_id": "kb_cc05e10b8ef3449d"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1507",
+        "labels": ["AnalysisResult"],
+        "props": {
+          "vul_name": "IDOR - Underwriter makeDecision",
+          "verdict": "LIKELY_VULNERABLE",
+          "confidence": "HIGH",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "detail": "makeDecision (src/routes/underwriter/claims/[id]/+page.server.ts:85-87) 作为 SvelteKit form action，通过 params.id 直接更新 claims 表。无角色校验（路由前缀 /underwriter/ 不提供鉴权）、无数据归属校验（未验证 claim 是否分配给当前 underwriter）、无状态机校验（未检查 claim 当前 status 是否处于核保阶段）。任何登录用户（或拥有 session 的用户）可遍历 params.id 对任意 claim 执行审批/拒绝/修改操作，越权修改 status、amountApproved、underwriterDecision 等字段。hooks.server.ts 仅注入 session 无鉴权。",
+          "node_id": "ar_572c93e1e6ea4cea"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1506",
+        "labels": ["AuditInfo"],
+        "props": {
+          "branch_id": "",
+          "created_at": "2026-05-21T23:43:40.464139",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "content": "makeDecision (src/routes/underwriter/claims/[id]/+page.server.ts:85-87)：无角色校验（仅依赖路由前缀/underwriter/，SvelteKit 路由前缀不提供鉴权）；无数据归属校验（未验证 claim 是否分配给当前 underwriter）；无状态机校验（未检查 claim 当前 status 是否应处于核保阶段，如 'underwriter_review'）。攻击者传入任意 params.id 可更新任意 claim 的 status/amountApproved/underwriterDecision 等字段。",
+          "node_id": "ai_2b8ee6dd040a468a"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1501",
+        "labels": ["AnalysisResult"],
+        "props": {
+          "vul_name": "IDOR - 理赔工作流数据泄露",
+          "level": "HIGH",
+          "confidence": "HIGH",
+          "verdict": "LIKELY_VULNERABLE",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "detail": "GET /api/claims/workflow 路由（src/routes/api/claims/workflow/+server.ts:9-44）仅校验用户是否登录（locals.user存在），未对URL参数claimId进行所有权归属校验。任何登录用户可遍历claimId访问任意理赔的工作流状态、可用转换及历史记录。攻击路径：浏览器→SvelteKit Server→GET路由→直接查询claims表（无用户过滤）→返回全量数据。",
+          "verification_status": "CONFIRMED",
+          "status": "completed",
+          "node_id": "ar_d7a6ed807cef4dc3"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1500",
+        "labels": ["AuditInfo"],
+        "props": {
+          "branch_id": "",
+          "created_at": "2026-05-21T23:38:57.339104",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "content": "GET (src/routes/api/claims/workflow/+server.ts:9-44)：仅登录检查（第10-12行 locals.user存在性），无角色或数据归属校验。claimId直接来自URL参数（第14行），未验证用户对该claim的访问权限。任何登录用户可遍历claimId获取任意理赔的工作流状态、可用转换及历史。防护：缺失。适用：该路由IDOR分析。不适用：已有数据级权限校验的Sink。",
+          "node_id": "ai_0346ca4bd67b4396"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1479",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "通过URL参数claimId查询赔付计算结果，未校验当前用户对该claim的归属权，攻击者可通过遍历claimId获取任意理赔的赔付明细",
+          "file": "src/routes/api/claims/settlement/+server.ts",
+          "line": 16,
+          "function": "GET",
+          "sink_node_id": "src/routes/api/claims/settlement/+server.ts:16:GET",
+          "related_exec": "src/lib/server/settlement.ts:179:getClaimSettlements",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "src/lib/server/settlement.ts:179:getClaimSettlements",
+          "end_line": 16,
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1474",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "从请求体获取claimId传递给executeTransition，该函数仅校验角色未校验claim所有权，攻击者可提交任意claimId操作非归属理赔的状态流转",
+          "file": "src/routes/api/claims/workflow/+server.ts",
+          "line": 57,
+          "function": "POST",
+          "sink_node_id": "src/routes/api/claims/workflow/+server.ts:57:POST",
+          "related_exec": "src/lib/server/workflow.ts:200:executeTransition",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "src/lib/server/workflow.ts:200:executeTransition",
+          "end_line": 64,
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1505",
+        "labels": ["AnalysisResult"],
+        "props": {
+          "vul_name": "IDOR - Underwriter Claim Detail Access",
+          "level": "HIGH",
+          "confidence": "HIGH",
+          "verdict": "LIKELY_VULNERABLE",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "detail": "src/routes/underwriter/claims/[id]/+page.server.ts:load 是 SvelteKit 页面路由入口，通过 params.id 直接查询 claims 表（第10行），未校验当前用户（underwriter）是否应有权访问该理赔。任何具有 underwriter 角色的用户可通过遍历 /underwriter/claims/[id] 的 id 参数查看任意理赔详情（含 user、policy、adjuster 关联数据）。入口参数 params.id 完全由 URL 路径控制，攻击者可枚举。",
+          "verification_status": "CONFIRMED",
+          "status": "completed",
+          "node_id": "ar_a272e36006b243d7"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1504",
+        "labels": ["AnalysisResult"],
+        "props": {
+          "vul_name": "IDOR - 文件上传无资源所有权校验",
+          "level": "HIGH",
+          "confidence": "HIGH",
+          "verdict": "LIKELY_VULNERABLE",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "detail": "POST src/routes/api/documents/+server.ts 中，仅检查登录状态（第6行），未校验 claimId/policyId 的归属权。攻击者登录后可从 formData 传入任意 claimId/policyId，向不属于自己的理赔/保单上传文件。uploadDocument/uploadMultipleDocuments 以 locals.user.id 作为上传者，但文件关联的 claim/policy 未经所有权确认。",
+          "verification_status": "CONFIRMED",
+          "status": "completed",
+          "node_id": "ar_4ba79b9645d94a68"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1503",
+        "labels": ["AuditInfo"],
+        "props": {
+          "branch_id": "",
+          "created_at": "2026-05-21T23:41:56.306889",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "content": "POST (src/routes/api/documents/+server.ts:5-50)：仅第6行登录校验，无 claimId/policyId 所有权校验。claimId/policyId 直接来自 formData（第13-14行），攻击者可指定任意值。防护对象错误——校验了登录状态而非资源归属。适用于该路由 IDOR 分析。不适用于已有数据级权限校验的场景。",
+          "node_id": "ai_f57594d771b1474e"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1478",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "从请求体获取claimId直接调用triageClaim，未校验claim归属权，攻击者可对任意claim触发自动分派",
+          "file": "src/routes/api/claims/triage/+server.ts",
+          "line": 22,
+          "function": "POST",
+          "sink_node_id": "src/routes/api/claims/triage/+server.ts:22:POST",
+          "related_exec": "src/lib/server/triage.ts:32:autoAssignClaim",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "src/lib/server/triage.ts:32:autoAssignClaim",
+          "end_line": 22,
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1476",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "从请求体获取claimId直接调用runFraudCheck，未校验claim归属权，攻击者可对任意claim触发欺诈检测",
+          "file": "src/routes/api/claims/triage/+server.ts",
+          "line": 18,
+          "function": "POST",
+          "sink_node_id": "src/routes/api/claims/triage/+server.ts:18:POST",
+          "related_exec": "src/lib/server/triage.ts:32:autoAssignClaim",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "src/lib/server/triage.ts:32:autoAssignClaim",
+          "end_line": 18,
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1490",
+        "labels": ["AnalysisResult"],
+        "props": {
+          "vul_name": "IDOR - 理赔数据导出越权访问",
+          "level": "HIGH",
+          "confidence": "HIGH",
+          "verdict": "LIKELY_VULNERABLE",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "detail": "src/routes/api/claims/export/+server.ts:GET (line 5-60) → src/lib/server/batch.ts:exportClaimsToCSV (line 154-242)\n\n攻击路径：\n1. 任意adjuster或admin角色用户构造GET请求 /api/claims/export\n2. 可指定任意adjusterId筛选参数，或不传任何参数导出全量claim数据\n3. exportClaimsToCSV内部直接查询所有claims（db.query.claims.findMany无用户归属过滤），仅通过filters做客户端过滤\n4. 返回CSV包含：Claimant Name、Email、Policy Number、Amount Claimed、Fraud Score等敏感个人信息\n\n防御缺失：\n- 仅角色白名单校验（admin/adjuster可访问），无数据归属/所有权校验\n- exportClaimsToCSV无当前用户身份参与数据过滤\n- adjusterId参数完全由客户端控制，未校验是否属于当前用户",
+          "verification_status": "CONFIRMED",
+          "status": "completed",
+          "node_id": "ar_522cba84e61542c2"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1483",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "从请求体获取claimId调用saveSettlementCalculation，未校验claim归属权，攻击者可对任意claim保存赔付计算结果并覆盖amountRecommended",
+          "file": "src/routes/api/claims/settlement/+server.ts",
+          "line": 43,
+          "function": "POST",
+          "sink_node_id": "src/routes/api/claims/settlement/+server.ts:43:POST",
+          "related_exec": "src/lib/server/settlement.ts:155:saveSettlementCalculation",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "src/lib/server/settlement.ts:155:saveSettlementCalculation",
+          "end_line": 47,
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1481",
+        "labels": ["SinkFlowNode"],
+        "props": {
+          "reason": "从请求体获取claimId调用calculateSettlement，未校验claim归属权，攻击者可对任意claim进行赔付计算",
+          "file": "src/routes/api/claims/settlement/+server.ts",
+          "line": 36,
+          "function": "POST",
+          "sink_node_id": "src/routes/api/claims/settlement/+server.ts:36:POST",
+          "related_exec": "src/lib/server/settlement.ts:155:saveSettlementCalculation",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "related_exec_node": "src/lib/server/settlement.ts:155:saveSettlementCalculation",
+          "end_line": 40,
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1497",
+        "labels": ["AuditInfo"],
+        "props": {
+          "branch_id": "",
+          "created_at": "2026-05-21T23:37:27.792526",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "content": "src/routes/api/claims/triage/+server.ts:POST(5-27)：仅登录检查（第6行 locals.user 存在性校验），无角色或数据归属校验。claimId 直接来自请求体（第10行），未验证用户对该 claim 的访问权限。任何登录用户可遍历 claimId 对任意理赔触发自动分派。防护无效：仅登录检查不阻止越权操作。适用：该路由 IDOR 分析。不适用：已有数据级权限校验的 Sink。",
+          "node_id": "ai_313c4b108a4d4b74"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1491",
+        "labels": ["AuditInfo"],
+        "props": {
+          "branch_id": "",
+          "created_at": "2026-05-21T23:33:24.012779",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "content": "src/routes/api/claims/settlement/+server.ts:GET：仅登录检查（locals.user 存在），无角色或数据归属校验。claimId 直接来自 URL 参数，未验证用户对该 claim 的访问权限。任何登录用户可遍历 claimId 获取任意理赔的赔付明细。适用：该路由 IDOR 分析。不适用：已有数据级权限校验的 Sink。",
+          "node_id": "ai_158d5bf68035499a"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1489",
+        "labels": ["AuditInfo"],
+        "props": {
+          "branch_id": "",
+          "created_at": "2026-05-21T23:32:11.098846",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "content": "src/lib/server/batch.ts:exportClaimsToCSV(154-242)：直接查询全量claims（无用户归属过滤），filters仅作客户端过滤（含adjusterId参数可被攻击者指定），无当前用户身份参与数据筛选。输出含Claimant Name/Email/Policy Number等个人信息。adjuster角色可导出任意claim数据——IDOR完全成立。",
+          "node_id": "ai_2f97ee9d69014db4"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1488",
+        "labels": ["AuditInfo"],
+        "props": {
+          "branch_id": "",
+          "created_at": "2026-05-21T23:32:00.779751",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "content": "src/routes/api/claims/export/+server.ts:GET：仅角色白名单（admin/adjuster）鉴权，无数据归属/所有权校验。filters（status/type/dateFrom/dateTo/adjusterId/minAmount/maxAmount）全部来自URL参数，adjuster可指定任意adjusterId筛选并导出全量claim数据（含用户个人信息）。防护无效：角色控制不阻止adjuster越权访问他人数据。适用：所有该路由的IDOR分析。不适用：需数据级权限隔离的Sink。",
+          "node_id": "ai_e74497bdfe5c427c"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1498",
+        "labels": ["ChainNode"],
+        "props": {
+          "reason": "SvelteKit API 路由端点，由 HTTP POST 请求触发，无显式调用者。从请求体获取 claimId 直接调用 triageClaim，无数据归属校验。",
+          "file": "src/routes/api/claims/triage/+server.ts",
+          "branch_id": "br_8f54f199ba514d14",
+          "line": 5,
+          "function": "POST",
+          "created_at": "2026-05-21T23:37:31.960971",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "type": "entry_point",
+          "node_id": "cn_e34563a25f994f07",
+          "status": "completed"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1502",
+        "labels": ["AnalysisResult"],
+        "props": {
+          "vul_name": "IDOR - Claim Workflow Status Transition",
+          "level": "HIGH",
+          "confidence": "HIGH",
+          "verdict": "LIKELY_VULNERABLE",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "detail": "POST /api/claims/workflow 路由（src/routes/api/claims/workflow/+server.ts:46-71）从请求体获取 claimId 直接传递给 executeTransition（src/lib/server/workflow.ts:200-202），仅校验用户是否登录（第47行），未校验当前用户对该 claim 的所有权或归属关系。任何登录用户可遍历 claimId 参数，对任意理赔进行状态流转操作，包括越权提交、审批、拒赔等。executeTransition 内部（第200-227行）同样无归属校验，直接执行数据库更新。",
+          "verification_status": "CONFIRMED",
+          "status": "completed",
+          "node_id": "ar_2328cabc7f5541c6"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1492",
+        "labels": ["AnalysisResult"],
+        "props": {
+          "vul_name": "IDOR - 赔付结算信息泄露",
+          "level": "HIGH",
+          "confidence": "HIGH",
+          "verdict": "LIKELY_VULNERABLE",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "detail": "入口：GET /api/claims/settlement?claimId={id}。仅检查 locals.user 存在（登录），无角色或数据归属校验。任意登录用户可遍历 claimId 获取任意理赔的 settlementCalculations 全部记录（赔付明细）。Sink：getClaimSettlements(claimId) 直接查询 settlementCalculations 表，无权限过滤。",
+          "verification_status": "CONFIRMED",
+          "status": "completed",
+          "node_id": "ar_45607161cbfd490c"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1495",
+        "labels": ["AnalysisResult"],
+        "props": {
+          "vul_name": "IDOR - 理赔赔付金额越权修改",
+          "level": "HIGH",
+          "confidence": "HIGH",
+          "verdict": "LIKELY_VULNERABLE",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "detail": "漏洞路径：攻击者通过 POST /api/claims/settlement 发送请求，在请求体中指定任意 claimId，即可修改该理赔的 amountRecommended 字段。\n\n防护分析：\n1. 第21-23行：仅检查 locals.user 存在（登录校验）\n2. 第25-27行：角色白名单校验（仅 adjuster/admin 可访问）\n3. 无数据归属/所有权校验：claimId 直接来自请求体（第29行），未验证当前用户对该 claim 的访问权限\n\n攻击者（adjuster/admin 角色）可遍历 claimId 参数，修改任意理赔的推荐赔付金额，影响赔付决策。\n\n入口：POST /api/claims/settlement (src/routes/api/claims/settlement/+server.ts:20)\nSink：saveSettlementCalculation → db.update(claims) (src/lib/server/settlement.ts:155-160)",
+          "verification_status": "CONFIRMED",
+          "status": "completed",
+          "node_id": "ar_4c6f0d39fd6c4b12"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1494",
+        "labels": ["AnalysisResult"],
+        "props": {
+          "vul_name": "IDOR - 理赔赔付金额越权修改",
+          "level": "HIGH",
+          "confidence": "HIGH",
+          "verdict": "LIKELY_VULNERABLE",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "detail": "POST /api/claims/settlement 端点仅校验角色为 adjuster/admin，未校验 claimId 归属权。攻击者以 adjuster 身份可遍历 claimId，调用 calculateSettlement 并 save=true 修改任意理赔的 amountRecommended。\n\n入口→Sink路径：\nPOST /api/claims/settlement (src/routes/api/claims/settlement/+server.ts:20-55) → calculateSettlement (src/lib/server/settlement.ts) → saveSettlementCalculation (src/lib/server/settlement.ts:155-160) → db.update(claims).where(eq(claims.id, input.claimId))，无归属过滤。",
+          "verification_status": "CONFIRMED",
+          "status": "completed",
+          "node_id": "ar_72ef5c010c024af8"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1493",
+        "labels": ["AuditInfo"],
+        "props": {
+          "branch_id": "",
+          "created_at": "2026-05-21T23:34:02.470294",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "content": "POST (src/routes/api/claims/settlement/+server.ts:20-55)：角色白名单（adjuster/admin）鉴权，无数据归属/所有权校验。claimId 来自请求体，直接传入 calculateSettlement 和 saveSettlementCalculation，未验证用户对该 claim 的访问权限。adjuster/admin 可遍历 claimId 修改任意理赔的推荐赔付金额。防护无效：角色控制不阻止越权操作他人数据。",
+          "node_id": "ai_b61961144de24b03"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1496",
+        "labels": ["AnalysisResult"],
+        "props": {
+          "vul_name": "IDOR - 欺诈检测API未校验claim归属",
+          "level": "HIGH",
+          "confidence": "HIGH",
+          "verdict": "LIKELY_VULNERABLE",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "detail": "src/routes/api/claims/triage/+server.ts:POST (line 18) 从请求体获取claimId直接调用runFraudCheck，仅做登录检查(locals.user存在性)，未校验当前用户对claimId的归属/访问权限。任何登录用户可遍历claimId对任意理赔触发欺诈检测，影响理赔分派结果。",
+          "verification_status": "CONFIRMED",
+          "status": "completed",
+          "node_id": "ar_fa15cda05ad54f2e"
+        }
+      },
+      {
+        "elementId": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1499",
+        "labels": ["AnalysisResult"],
+        "props": {
+          "vul_name": "IDOR - Claim Triage",
+          "branch_id": "br_8f54f199ba514d14",
+          "level": "HIGH",
+          "verdict": "LIKELY_VULNERABLE",
+          "confidence": "HIGH",
+          "task_id": "b8b07d32-d7d5-4efa-8695-60d7e1250ff1",
+          "detail": "POST /api/claims/triage 仅校验用户是否登录（locals.user 存在），未校验用户对 claimId 的所有权或角色权限。任何登录用户可遍历 claimId 对任意理赔触发自动分派（autoAssignClaim），篡改分派结果。攻击路径：HTTP POST → +server.ts:POST → triageClaim(claimId) → autoAssignClaim(claimId) → 直接更新 claims 表。",
+          "verification_status": "CONFIRMED",
+          "status": "completed",
+          "node_id": "ar_c4ba196d411d4b33"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1447",
+        "type": "HAS_STAGE",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1454",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1455",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1448",
+        "type": "HAS_STAGE",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1455",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1456",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1449",
+        "type": "HAS_LANGUAGE",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1456",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1463",
+        "type": "HAS_RISK_CATEGORY",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1471",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1462",
+        "type": "HAS_RISK_CATEGORY",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1470",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1461",
+        "type": "HAS_RISK_CATEGORY",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1469",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1460",
+        "type": "HAS_RISK_CATEGORY",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1468",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1459",
+        "type": "HAS_RISK_CATEGORY",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1467",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1458",
+        "type": "HAS_RISK_CATEGORY",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1466",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "type": "HAS_RISK_CATEGORY",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1465",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1456",
+        "type": "HAS_RISK_CATEGORY",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1464",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1455",
+        "type": "HAS_RISK_CATEGORY",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1463",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1454",
+        "type": "HAS_RISK_CATEGORY",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1462",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1453",
+        "type": "HAS_RISK_CATEGORY",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1461",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1452",
+        "type": "HAS_RISK_CATEGORY",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1460",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1451",
+        "type": "HAS_RISK_CATEGORY",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1459",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1450",
+        "type": "HAS_RISK_CATEGORY",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1457",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1458",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1472",
+        "type": "HAS_SINK",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1461",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1480",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1477",
+        "type": "HAS_SINK",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1461",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1485",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1476",
+        "type": "HAS_SINK",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1461",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1473",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1474",
+        "type": "HAS_SINK",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1461",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1475",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1471",
+        "type": "HAS_SINK",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1461",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1482",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1475",
+        "type": "HAS_SINK",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1461",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1484",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1479",
+        "type": "HAS_SINK",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1461",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1487",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1473",
+        "type": "HAS_SINK",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1461",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1477",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1478",
+        "type": "HAS_SINK",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1461",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1486",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1464",
+        "type": "HAS_KNOWLEDGE",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1461",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1472",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1496",
+        "type": "HAS_RESULT",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1485",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1504",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1495",
+        "type": "HAS_AUDIT_INFO",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1485",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1503",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1493",
+        "type": "HAS_RESULT",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1473",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1501",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1492",
+        "type": "HAS_AUDIT_INFO",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1473",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1500",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1466",
+        "type": "FLOW",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1482",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1483",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1482",
+        "type": "HAS_RESULT",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1484",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1490",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1499",
+        "type": "HAS_RESULT",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1487",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1507",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1498",
+        "type": "HAS_AUDIT_INFO",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1487",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1506",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1469",
+        "type": "FLOW",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1477",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1478",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1497",
+        "type": "HAS_RESULT",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1486",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1505",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1489",
+        "type": "HAS_AUDIT_INFO",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1472",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1497",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1483",
+        "type": "HAS_AUDIT_INFO",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1472",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1491",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1481",
+        "type": "HAS_AUDIT_INFO",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1472",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1489",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1480",
+        "type": "HAS_AUDIT_INFO",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1472",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1488",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1484",
+        "type": "HAS_RESULT",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1479",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1492",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1467",
+        "type": "FLOW",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1480",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1479",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1494",
+        "type": "HAS_RESULT",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1474",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1502",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1470",
+        "type": "FLOW",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1475",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1474",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1490",
+        "type": "FLOW",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1478",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1498",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1488",
+        "type": "HAS_RESULT",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1476",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1496",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1468",
+        "type": "FLOW",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1477",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1476",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1487",
+        "type": "HAS_RESULT",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1483",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1495",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1486",
+        "type": "HAS_RESULT",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1481",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1494",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1485",
+        "type": "HAS_AUDIT_INFO",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1481",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1493",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1465",
+        "type": "FLOW",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1482",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1481",
+        "props": {}
+      },
+      {
+        "elementId": "5:f2e67167-c5a5-4805-840e-94d6ba96963f:1491",
+        "type": "HAS_RESULT",
+        "start": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1498",
+        "end": "4:f2e67167-c5a5-4805-840e-94d6ba96963f:1499",
+        "props": {}
+      }
+    ]
+  }
+}
