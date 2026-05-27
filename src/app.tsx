@@ -157,12 +157,8 @@ export const layout: RunTimeLayoutConfig = ({
  * 它基于 axios 和 ahooks 的 useRequest 提供了一套统一的网络请求和错误处理方案。
  * @doc https://umijs.org/docs/max/request#配置
  */
-import { isDemoMode } from '@/demo';
-
-/** 开发环境或 Vercel Demo 构建走相对路径 /api（Demo 由 request 拦截器 Mock） */
-const useLocalApi = isDemoMode() || process.env.NODE_ENV === 'development';
-
 export const request: RequestConfig = {
-  baseURL: useLocalApi ? '' : 'http://127.0.0.1:6066',
+  // 业务路径已含 /api 前缀；开发走 proxy，生产走 Nginx 反向代理
+  baseURL: '',
   ...errorConfig,
 };
