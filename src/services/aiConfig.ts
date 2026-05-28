@@ -43,7 +43,7 @@ export async function updateLlmConfig(body: Partial<LLMConfigDTO>) {
 }
 
 export async function testLlmConfig() {
-  return request<OkResponse<string>>('/api/configs//llm/test', {
+  return request<OkResponse<string>>('/api/configs/llm/test', {
     method: 'GET',
     skipErrorHandler: true,
   });
