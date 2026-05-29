@@ -2,7 +2,7 @@
 /* eslint-disable */
 import { request } from "@umijs/max";
 
-/** List Events GET /api/events — 仅 task_id + 可选 after_id（增量） */
+/** List Events GET /api/events — 游标分页：尾窗 / before_id / after_id（三模式互斥） */
 export async function listEventsApiEventsGet(
   params: API.listEventsApiEventsGetParams,
   options?: { [key: string]: any },

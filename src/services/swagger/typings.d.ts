@@ -278,7 +278,11 @@ declare namespace API {
 
   type listEventsApiEventsGetParams = {
     task_id: string;
-    /** 当前已加载的最后一条事件 id；不传则拉取首批，传则只返回 id 更大的新事件 */
+    /** 每页条数（1–500），仅首次加载 / 向上翻历史 */
+    limit?: number;
+    /** 向上翻页：id < before_id 的更早事件 */
+    before_id?: number;
+    /** 轮询：id > after_id 的新事件（与 before_id 互斥） */
     after_id?: number;
   };
 
@@ -443,6 +447,12 @@ declare namespace API {
     total: number;
     /** Success */
     success?: boolean;
+    /** 是否还有比本页更早的事件 */
+    has_more_older?: boolean;
+    /** 本页最小事件 id */
+    page_oldest_id?: number | null;
+    /** 本页最大事件 id */
+    page_newest_id?: number | null;
   };
 
   type PageResultFindingRead_ = {

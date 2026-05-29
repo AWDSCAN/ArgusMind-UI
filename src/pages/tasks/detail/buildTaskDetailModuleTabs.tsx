@@ -11,6 +11,10 @@ import { TaskRuntimeLogsPanel } from './TaskRuntimeLogsPanel';
 export type BuildTaskDetailModuleTabsParams = {
   detail: AuditSessionDetailDTO;
   sortedEvents: AuditSessionDetailDTO['events'];
+  eventsTotal?: number;
+  hasMoreOlder?: boolean;
+  loadingOlderEvents?: boolean;
+  onLoadOlderEvents?: () => Promise<void>;
   humanApprovalMetaMap: Record<string, HumanApprovalPayload>;
   onOpenEventDetail: (eventId: string) => void;
   onRequestFocusAuditChainNode: (neo4jElementId: string) => void;
@@ -25,6 +29,10 @@ export type BuildTaskDetailModuleTabsParams = {
 export function buildTaskDetailModuleTabs({
   detail,
   sortedEvents,
+  eventsTotal,
+  hasMoreOlder,
+  loadingOlderEvents,
+  onLoadOlderEvents,
   humanApprovalMetaMap,
   onOpenEventDetail,
   onRequestFocusAuditChainNode,
@@ -48,13 +56,20 @@ export function buildTaskDetailModuleTabs({
       label: (
         <Space size={6}>
           <span>事件</span>
-          <Tag color="blue">{sortedEvents.length}</Tag>
+          <Tag color="blue">
+            {eventsTotal != null && eventsTotal > sortedEvents.length
+              ? `${sortedEvents.length}/${eventsTotal}`
+              : sortedEvents.length}
+          </Tag>
         </Space>
       ),
       children: (
         <TaskEventsTimelineCard
           detail={detail}
           sortedEvents={sortedEvents}
+          hasMoreOlder={hasMoreOlder}
+          loadingOlder={loadingOlderEvents}
+          onLoadOlder={onLoadOlderEvents}
           humanApprovalMetaMap={humanApprovalMetaMap}
           onOpenEventDetail={onOpenEventDetail}
           onRequestFocusAuditChainNode={onRequestFocusAuditChainNode}

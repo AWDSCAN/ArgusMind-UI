@@ -222,60 +222,91 @@ export async function listAuditSessions(params: {
   } satisfies PageResult<AuditSessionItem>;
 }
 
-/** 按 task_id + 末尾事件 id 增量拉取，合并为完整列表（直至某次无新数据） */
-async function fetchAllTaskEventsIncremental(taskId: string): Promise<API.EventRead[]> {
-  const all: API.EventRead[] = [];
-  let afterEventId: number | undefined;
-  const maxRounds = 500;
+export const DEFAULT_TASK_EVENTS_PAGE_SIZE = 200;
 
-  for (let round = 0; round < maxRounds; round += 1) {
-    const res = await listEventsApiEventsGet(
-      afterEventId === undefined
-        ? { task_id: taskId }
-        : { task_id: taskId, after_id: afterEventId },
-    );
-    const batch = Array.isArray(res?.data) ? res.data : [];
-    if (batch.length === 0) {
-      break;
-    }
-    all.push(...batch);
-    const maxId = Math.max(...batch.map((e) => e.id));
-    if (maxId <= (afterEventId ?? -1)) {
-      break;
-    }
-    afterEventId = maxId;
-  }
+/** 任务事件列表游标分页元数据（与 GET /api/events 响应对齐） */
+export type TaskEventListMeta = {
+  total: number;
+  hasMoreOlder: boolean;
+  pageOldestId: number | null;
+  pageNewestId: number | null;
+};
 
-  return all;
+function parseTaskEventListMeta(
+  res: API.PageResultEventRead_ | undefined,
+): TaskEventListMeta {
+  const data = Array.isArray(res?.data) ? res.data : [];
+  const ids = data.map((e) => e.id).filter((id) => Number.isFinite(id));
+  return {
+    total: res?.total ?? data.length,
+    hasMoreOlder: Boolean(res?.has_more_older),
+    pageOldestId:
+      res?.page_oldest_id ??
+      (ids.length > 0 ? Math.min(...ids) : null),
+    pageNewestId:
+      res?.page_newest_id ??
+      (ids.length > 0 ? Math.max(...ids) : null),
+  };
 }
 
-/** 从指定事件 id 之后增量拉取（每轮带 after_id，直至无新数据） */
-async function fetchTaskEventsSince(
+/** 首次进入：最近 limit 条（id 升序） */
+export async function listTaskEventsInitial(
   taskId: string,
-  sinceId: number,
+  limit = DEFAULT_TASK_EVENTS_PAGE_SIZE,
+): Promise<{ events: API.EventRead[]; meta: TaskEventListMeta }> {
+  const res = await listEventsApiEventsGet({ task_id: taskId, limit });
+  return {
+    events: Array.isArray(res?.data) ? res.data : [],
+    meta: parseTaskEventListMeta(res),
+  };
+}
+
+/** 向上翻历史：id < beforeId 的更早 limit 条 */
+export async function listTaskEventsOlder(
+  taskId: string,
+  beforeId: number,
+  limit = DEFAULT_TASK_EVENTS_PAGE_SIZE,
+): Promise<{ events: API.EventRead[]; meta: TaskEventListMeta }> {
+  const res = await listEventsApiEventsGet({
+    task_id: taskId,
+    before_id: beforeId,
+    limit,
+  });
+  return {
+    events: Array.isArray(res?.data) ? res.data : [],
+    meta: parseTaskEventListMeta(res),
+  };
+}
+
+/** 轮询：id > afterId 的全部新事件（单次请求） */
+export async function listTaskEventsSince(
+  taskId: string,
+  afterId: number,
 ): Promise<API.EventRead[]> {
-  const all: API.EventRead[] = [];
-  let afterEventId = sinceId;
-  const maxRounds = 500;
+  const res = await listEventsApiEventsGet({
+    task_id: taskId,
+    after_id: afterId,
+  });
+  return Array.isArray(res?.data) ? res.data : [];
+}
 
-  for (let round = 0; round < maxRounds; round += 1) {
-    const res = await listEventsApiEventsGet({
-      task_id: taskId,
-      after_id: afterEventId,
-    });
-    const batch = Array.isArray(res?.data) ? res.data : [];
-    if (batch.length === 0) {
-      break;
-    }
-    all.push(...batch);
-    const maxId = Math.max(...batch.map((e) => e.id));
-    if (maxId <= afterEventId) {
-      break;
-    }
-    afterEventId = maxId;
-  }
+function buildDetailSliceFromEventReads(
+  events: API.EventRead[],
+): Pick<AuditSessionDetailDTO, 'events' | 'toolCalls'> {
+  const mappedRows = events.map(mapEventReadToDetailEventAndToolCall);
+  return {
+    events: mappedRows.map((r) => r.event),
+    toolCalls: mappedRows.map((r) => r.toolCall),
+  };
+}
 
-  return all;
+/** 将更早一页事件合并进已有详情 */
+export function mergeOlderTaskEventsIntoDetail(
+  prev: AuditSessionDetailDTO,
+  olderEvents: API.EventRead[],
+): AuditSessionDetailDTO {
+  const slice = buildDetailSliceFromEventReads(olderEvents);
+  return mergeAuditSessionDetailDelta(prev, { ...prev, ...slice });
 }
 
 export type GetAuditSessionDetailOptions = {
@@ -285,7 +316,14 @@ export type GetAuditSessionDetailOptions = {
 
 export type GetAuditSessionDetailResult =
   | { success: false; data: null }
-  | { success: true; data: AuditSessionDetailDTO; partialEvents: boolean };
+  | {
+      success: true;
+      data: AuditSessionDetailDTO;
+      /** true：轮询增量；false：首屏尾窗（可能未加载全部历史） */
+      partialEvents: boolean;
+      /** 仅首屏尾窗加载时返回 */
+      eventListMeta?: TaskEventListMeta;
+    };
 
 /** 将增量接口返回的 detail 合并进已有详情（事件/工具调用按 id 去重） */
 export function mergeAuditSessionDetailDelta(
@@ -327,10 +365,13 @@ export async function getAuditSessionDetail(
   const afterCursor = options?.afterEventId;
   const eventsPromise =
     afterCursor === undefined
-      ? fetchAllTaskEventsIncremental(taskId)
-      : fetchTaskEventsSince(taskId, afterCursor);
+      ? listTaskEventsInitial(taskId).then((r) => r)
+      : listTaskEventsSince(taskId, afterCursor).then((events) => ({
+          events,
+          meta: undefined as TaskEventListMeta | undefined,
+        }));
 
-  const [taskRes, events, logsRes, graphRes] = await Promise.all([
+  const [taskRes, eventsResult, logsRes, graphRes] = await Promise.all([
     getTaskApiTasksTaskIdGet({ task_id: taskId }),
     eventsPromise,
     listLogsApiLogsGet({ task_id: taskId, current: 1, pageSize: 200 }),
@@ -346,6 +387,9 @@ export async function getAuditSessionDetail(
     return { success: false, data: null };
   }
   const logs = logsRes?.data ?? [];
+  const events = eventsResult.events;
+  const eventListMeta =
+    afterCursor === undefined ? eventsResult.meta : undefined;
 
   const mappedRows = events.map(mapEventReadToDetailEventAndToolCall);
   const eventRecords = mappedRows.map((r) => r.event);
@@ -400,5 +444,6 @@ export async function getAuditSessionDetail(
     success: true,
     data,
     partialEvents: afterCursor !== undefined,
+    ...(eventListMeta !== undefined ? { eventListMeta } : {}),
   };
 }

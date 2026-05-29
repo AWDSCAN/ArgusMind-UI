@@ -22,7 +22,10 @@ import {
   auditChainGraphFingerprint,
   fetchAuditChainGraph,
   getAuditSessionDetail,
+  listTaskEventsOlder,
   mergeAuditSessionDetailDelta,
+  mergeOlderTaskEventsIntoDetail,
+  type TaskEventListMeta,
 } from '@/services/auditSessions';
 import {
   getEventApiEventsEventIdGet,
@@ -62,6 +65,10 @@ const TaskDetailPage: React.FC = () => {
   const { id: taskId } = useParams<{ id: string }>();
   const [loading, setLoading] = useState(true);
   const [detail, setDetail] = useState<AuditSessionDetailDTO | null>(null);
+  const [eventListMeta, setEventListMeta] = useState<TaskEventListMeta | null>(
+    null,
+  );
+  const [loadingOlderEvents, setLoadingOlderEvents] = useState(false);
   const [eventDrawerOpen, setEventDrawerOpen] = useState(false);
   const [eventDetailLoading, setEventDetailLoading] = useState(false);
   const [selectedEventId, setSelectedEventId] = useState<string>('');
@@ -156,9 +163,13 @@ const TaskDetailPage: React.FC = () => {
       const silent = Boolean(options?.silent);
       if (!taskId) {
         setDetail(null);
+        setEventListMeta(null);
         setLoading(false);
         auditChainGraphFingerprintRef.current = '';
         return;
+      }
+      if (!silent) {
+        setEventListMeta(null);
       }
       if (!silent) {
         setLoading(true);
@@ -213,9 +224,13 @@ const TaskDetailPage: React.FC = () => {
             );
             mergedForRunningPoll = sessionRes.data;
             setDetail(sessionRes.data);
+            if (sessionRes.eventListMeta) {
+              setEventListMeta(sessionRes.eventListMeta);
+            }
           }
         } else {
           setDetail(null);
+          setEventListMeta(null);
           auditChainGraphFingerprintRef.current = '';
           if (!silent) {
             message.error('加载任务详情失败');
@@ -223,6 +238,7 @@ const TaskDetailPage: React.FC = () => {
         }
       } catch {
         setDetail(null);
+        setEventListMeta(null);
         auditChainGraphFingerprintRef.current = '';
         if (!silent) {
           message.error('加载任务详情失败');
@@ -796,12 +812,52 @@ const TaskDetailPage: React.FC = () => {
     reloadCompletionRef.current = reloadCompletionStatus;
   }, [reloadCompletionStatus]);
 
+  const handleLoadOlderEvents = useCallback(async () => {
+    if (!taskId || loadingOlderEvents) {
+      return;
+    }
+    const beforeId = eventListMeta?.pageOldestId;
+    if (beforeId == null || !eventListMeta?.hasMoreOlder) {
+      return;
+    }
+    setLoadingOlderEvents(true);
+    try {
+      const { events, meta } = await listTaskEventsOlder(taskId, beforeId);
+      if (events.length === 0) {
+        setEventListMeta((prev) =>
+          prev ? { ...prev, hasMoreOlder: false } : prev,
+        );
+        return;
+      }
+      const prev = detailRef.current;
+      if (!prev) {
+        return;
+      }
+      const merged = mergeOlderTaskEventsIntoDetail(prev, events);
+      setDetail(merged);
+      setEventListMeta((prevMeta) => ({
+        total: meta.total,
+        hasMoreOlder: meta.hasMoreOlder,
+        pageOldestId: meta.pageOldestId,
+        pageNewestId: prevMeta?.pageNewestId ?? meta.pageNewestId,
+      }));
+    } catch {
+      message.error('加载更早事件失败');
+    } finally {
+      setLoadingOlderEvents(false);
+    }
+  }, [taskId, eventListMeta, loadingOlderEvents]);
+
   const moduleTabs = useMemo(
     () =>
       detail
         ? buildTaskDetailModuleTabs({
             detail,
             sortedEvents,
+            eventsTotal: eventListMeta?.total,
+            hasMoreOlder: eventListMeta?.hasMoreOlder,
+            loadingOlderEvents,
+            onLoadOlderEvents: handleLoadOlderEvents,
             humanApprovalMetaMap,
             onOpenEventDetail: handleOpenEventDetail,
             onRequestFocusAuditChainNode: handleRequestFocusAuditChainNode,
@@ -817,7 +873,10 @@ const TaskDetailPage: React.FC = () => {
         : [],
     [
       detail,
+      eventListMeta,
+      handleLoadOlderEvents,
       humanApprovalMetaMap,
+      loadingOlderEvents,
       sortedEvents,
       handleOpenEventDetail,
       handleRequestFocusAuditChainNode,
